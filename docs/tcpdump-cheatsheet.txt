@@ -1,0 +1,34 @@
+=== TCPDUMP CHEAT SHEET - TechCorp Lab ===
+
+BASIC:
+sudo tcpdump -i eth0              # capture on interface
+sudo tcpdump -i any               # all interfaces
+sudo tcpdump -c 100               # capture 100 packets
+sudo tcpdump -w file.pcap         # save to file
+sudo tcpdump -r file.pcap         # read from file
+sudo tcpdump -v / -vv / -vvv      # verbosity levels
+sudo tcpdump -n                   # no DNS resolution
+sudo tcpdump -A                   # show packet content (ASCII)
+sudo tcpdump -X                   # show packet content (HEX+ASCII)
+FILTERS:
+host 10.0.1.5                     # specific host
+src host 10.0.1.5                 # source host
+dst host 10.0.1.5                 # destination host
+port 80                           # specific port
+src port 80                       # source port
+dst port 80                       # destination port
+tcp / udp / icmp                  # by protocol
+net 10.0.0.0/16                   # by network
+COMBINATIONS:
+host X and port 80                # host AND port
+port 80 or port 443               # port 80 OR 443
+not port 22                       # exclude SSH
+tcp and port 2049                 # TCP NFS traffic
+COMMON USE CASES:
+HTTP:    tcpdump -i eth0 -A port 80
+HTTPS:   tcpdump -i eth0 port 443
+NFS:     tcpdump -i eth0 port 2049
+SMB:     tcpdump -i eth0 port 445
+DNS:     tcpdump -i eth0 port 53
+SSH:     tcpdump -i eth0 port 22
+API:     tcpdump -i lo port 5000
